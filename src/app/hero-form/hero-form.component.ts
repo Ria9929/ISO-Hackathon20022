@@ -1,5 +1,5 @@
 import { Component,Input,OnInit } from '@angular/core';
-import {sendAddtoDB} from '../sendAddtoDB'
+import {SendAddtoDB} from '../sendAddtoDB.service'
 import { Address } from '../address';
 
 @Component({
@@ -13,16 +13,17 @@ export class HeroFormComponent implements OnInit{
   @Input()
   model: Address=new Address();
 
-  constructor(private sendToApi: sendAddtoDB){}
-  
+  constructor(private sendToApi: SendAddtoDB){ }
+  ngOnInit(): void {
+  }
 
-  onSubmit() { console.log(this.user);
-    this.sendAddtoDB.registerAddress(this.user).subscribe(data=>{
+  onSubmit() { 
+    console.log(this.model);
+    this.SendAddtoDB.registerAddress(this.model).subscribe(data=>{
      alert("Successfully User is register?")
     },error=>alert("Sorry User not register")); }
 
-  ngOnInit(): void {
-  }
+  
 
   
 /*
